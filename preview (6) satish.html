@@ -1,0 +1,3656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI-Powered Video Advertising | YourStudio</title>
+    <meta name="description" content="AI-powered video advertising designed to capture attention, communicate value and turn creative into action.">
+
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+            --bg: #090a0a;
+            --bg-soft: #101212;
+            --card: #141717;
+            --card-soft: #111414;
+
+            --text: #f3f4ef;
+            --muted: #a4aaa4;
+            --muted-light: #c5cac4;
+
+            --line: rgba(255,255,255,.10);
+            --line-soft: rgba(255,255,255,.06);
+
+            --accent: #c6ff4a;
+            --accent-dark: #a9e92f;
+
+            --container: 1320px;
+
+            --radius: 22px;
+            --radius-sm: 14px;
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+
+            font-family: "Instrument Sans", sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+
+            line-height: 1.65;
+
+            letter-spacing: 0;
+            word-spacing: .01em;
+
+            overflow-x: hidden;
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #080908;
+        }
+
+
+        /* =========================================================
+           GLOBAL TYPOGRAPHY
+        ========================================================= */
+
+        .display-heading {
+            font-size: clamp(3rem, 6vw, 6.2rem);
+            font-weight: 600;
+
+            line-height: 1.02;
+
+            letter-spacing: -0.035em;
+            word-spacing: .01em;
+
+            margin: 0;
+        }
+
+        .section-heading {
+            font-size: clamp(2.2rem, 4vw, 4.3rem);
+            font-weight: 600;
+
+            line-height: 1.08;
+
+            letter-spacing: -0.03em;
+            word-spacing: .01em;
+
+            margin: 0;
+        }
+
+        .statement-text {
+            margin: 0;
+
+            font-size: clamp(2rem, 4vw, 4.3rem);
+            font-weight: 500;
+
+            line-height: 1.12;
+
+            letter-spacing: -0.025em;
+            word-spacing: .015em;
+        }
+
+        .body-large {
+            font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+            line-height: 1.7;
+            color: var(--muted-light);
+
+            letter-spacing: 0;
+            word-spacing: .015em;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            font-size: .78rem;
+            font-weight: 500;
+
+            color: var(--muted-light);
+
+            letter-spacing: .08em;
+            word-spacing: .04em;
+
+            margin-bottom: 22px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+
+            box-shadow: 0 0 15px rgba(198,255,74,.45);
+        }
+
+        .text-muted-custom {
+            color: var(--muted);
+        }
+
+
+        /* =========================================================
+           LAYOUT
+        ========================================================= */
+
+        .main-container {
+            width: min(var(--container), calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        section {
+            position: relative;
+        }
+
+        .section-space {
+            padding: 120px 0;
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
+        .site-nav {
+            position: absolute;
+            z-index: 50;
+
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            padding: 24px 0;
+        }
+
+        .nav-inner {
+            width: min(var(--container), calc(100% - 48px));
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-size: 1.15rem;
+            font-weight: 600;
+
+            letter-spacing: -.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .nav-links a {
+            color: rgba(243,244,239,.75);
+
+            font-size: .92rem;
+
+            transition: color .25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            padding: 11px 17px;
+
+            border: 1px solid rgba(198,255,74,.35);
+            border-radius: 999px;
+
+            color: var(--accent) !important;
+
+            transition:
+                background .25s ease,
+                border-color .25s ease,
+                transform .25s ease;
+        }
+
+        .nav-cta:hover {
+            background: rgba(198,255,74,.08);
+            border-color: rgba(198,255,74,.7);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+
+            padding-top: 92px;
+            padding-bottom: 70px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-video-wrap {
+            width: 100%;
+
+            height: 67vh;
+            min-height: 520px;
+
+            border-radius: 26px;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 30%,
+                    rgba(198,255,74,.10),
+                    transparent 38%
+                ),
+                #111414;
+
+            border: 1px solid var(--line);
+
+            position: relative;
+        }
+
+        .hero-video-wrap video {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            background: #101313;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.03),
+                    rgba(198,255,74,.03)
+                );
+        }
+
+        .video-placeholder-content {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .video-placeholder-icon {
+            width: 76px;
+            height: 76px;
+
+            margin: 0 auto 18px;
+
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: var(--accent);
+
+            font-size: 22px;
+        }
+
+        .video-placeholder p {
+            margin: 0;
+
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .hero-copy {
+            padding-top: 50px;
+        }
+
+        .hero-copy p {
+            max-width: 700px;
+            margin: 28px 0 0;
+
+            color: var(--muted-light);
+
+            font-size: clamp(1.05rem, 1.5vw, 1.28rem);
+            line-height: 1.65;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+
+            align-items: center;
+            gap: 15px;
+
+            margin-top: 32px;
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .btn-main {
+            position: relative;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 22px;
+
+            border-radius: 999px;
+            border: 1px solid var(--accent);
+
+            background: var(--accent);
+            color: #0a0c08;
+
+            font-size: .95rem;
+            font-weight: 600;
+
+            line-height: 1;
+
+            overflow: visible;
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                background .25s ease;
+        }
+
+        .btn-main::before {
+            content: "";
+
+            position: absolute;
+            inset: -5px;
+
+            border: 1px solid rgba(198,255,74,.5);
+            border-radius: inherit;
+
+            opacity: 0;
+
+            animation: ctaPulse 3.5s ease-out infinite;
+            pointer-events: none;
+        }
+
+        .btn-main::after {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -120%;
+
+            width: 60%;
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,.35),
+                transparent
+            );
+
+            transform: skewX(-18deg);
+
+            animation: ctaShine 5s ease-in-out infinite;
+
+            pointer-events: none;
+        }
+
+        .btn-main:hover {
+            color: #080a07;
+
+            transform: translateY(-3px);
+
+            background: var(--accent-dark);
+
+            box-shadow:
+                0 12px 35px rgba(198,255,74,.16);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px 21px;
+
+            border-radius: 999px;
+
+            border: 1px solid var(--line);
+
+            color: var(--text);
+
+            font-size: .95rem;
+
+            transition:
+                border-color .25s ease,
+                background .25s ease,
+                transform .25s ease;
+        }
+
+        .btn-secondary:hover {
+            color: var(--text);
+
+            border-color: rgba(255,255,255,.25);
+            background: rgba(255,255,255,.04);
+
+            transform: translateY(-2px);
+        }
+
+        @keyframes ctaPulse {
+            0% {
+                transform: scale(.96);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .65;
+            }
+
+            45% {
+                transform: scale(1.05);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1.05);
+                opacity: 0;
+            }
+        }
+
+        @keyframes ctaShine {
+            0%,
+            65% {
+                left: -120%;
+            }
+
+            78% {
+                left: 130%;
+            }
+
+            100% {
+                left: 130%;
+            }
+        }
+
+
+        /* =========================================================
+           STATEMENT
+        ========================================================= */
+
+        .statement {
+            padding: 110px 0 130px;
+
+            border-top: 1px solid var(--line-soft);
+            border-bottom: 1px solid var(--line-soft);
+        }
+
+        .statement-label {
+            margin-bottom: 28px;
+
+            color: var(--muted);
+
+            font-size: .82rem;
+            letter-spacing: .07em;
+        }
+
+        .statement-text span {
+            color: var(--accent);
+        }
+
+
+        /* =========================================================
+           SECTION HEADER
+        ========================================================= */
+
+        .section-header {
+            margin-bottom: 55px;
+        }
+
+        .section-header p {
+            max-width: 680px;
+
+            margin: 22px 0 0;
+
+            color: var(--muted);
+
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           PORTFOLIO
+        ========================================================= */
+
+        .portfolio-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .portfolio-card {
+            position: relative;
+
+            min-height: 390px;
+
+            overflow: hidden;
+
+            border-radius: var(--radius);
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+
+            transition:
+                transform .35s ease,
+                border-color .35s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+
+            border-color: rgba(255,255,255,.18);
+        }
+
+        .portfolio-visual {
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    rgba(198,255,74,.16),
+                    transparent 34%
+                ),
+                linear-gradient(
+                    145deg,
+                    #171b19,
+                    #0e1110
+                );
+        }
+
+        .portfolio-visual::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(5,6,6,.95),
+                    rgba(5,6,6,.15) 65%,
+                    rgba(5,6,6,.02)
+                );
+        }
+
+        .portfolio-number {
+            position: absolute;
+
+            top: 20px;
+            left: 20px;
+
+            z-index: 2;
+
+            color: rgba(255,255,255,.55);
+
+            font-size: .78rem;
+        }
+
+        .portfolio-content {
+            position: absolute;
+
+            left: 22px;
+            right: 22px;
+            bottom: 22px;
+
+            z-index: 3;
+        }
+
+        .portfolio-content h3 {
+            margin: 0 0 8px;
+
+            font-size: 1.2rem;
+            font-weight: 500;
+
+            letter-spacing: -.01em;
+        }
+
+        .portfolio-content p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: .9rem;
+            line-height: 1.5;
+        }
+
+        .portfolio-bottom {
+            margin-top: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .portfolio-bottom p {
+            margin: 0;
+
+            max-width: 620px;
+
+            color: var(--muted);
+
+            font-size: .95rem;
+        }
+
+
+        /* =========================================================
+           COMPARISON
+        ========================================================= */
+
+        .comparison-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+        }
+
+        .comparison-card {
+            padding: 38px;
+
+            border-radius: var(--radius);
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+        }
+
+        .comparison-card.ai-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(198,255,74,.08),
+                    rgba(255,255,255,.025)
+                ),
+                var(--card);
+        }
+
+        .comparison-card h3 {
+            margin: 0 0 30px;
+
+            font-size: 1.35rem;
+            font-weight: 500;
+
+            letter-spacing: -.015em;
+        }
+
+        .comparison-list {
+            list-style: none;
+
+            padding: 0;
+            margin: 0;
+        }
+
+        .comparison-list li {
+            position: relative;
+
+            padding: 15px 0 15px 25px;
+
+            color: var(--muted-light);
+
+            border-top: 1px solid var(--line-soft);
+
+            font-size: .95rem;
+        }
+
+        .comparison-list li:last-child {
+            border-bottom: 1px solid var(--line-soft);
+        }
+
+        .comparison-list li::before {
+            content: "•";
+
+            position: absolute;
+            left: 4px;
+
+            color: var(--accent);
+        }
+
+
+        /* =========================================================
+           FORMULA
+        ========================================================= */
+
+        .formula-grid {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 1px;
+
+            background: var(--line);
+
+            border: 1px solid var(--line);
+
+            border-radius: var(--radius);
+
+            overflow: hidden;
+        }
+
+        .formula-card {
+            min-height: 250px;
+
+            padding: 28px;
+
+            background: var(--card);
+        }
+
+        .formula-number {
+            color: var(--accent);
+
+            font-size: .78rem;
+            font-weight: 500;
+
+            margin-bottom: 70px;
+        }
+
+        .formula-card h3 {
+            margin: 0 0 10px;
+
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .formula-card p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: .9rem;
+            line-height: 1.55;
+        }
+
+
+        /* =========================================================
+           SERVICES
+        ========================================================= */
+
+        .services-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 16px;
+        }
+
+        .service-card {
+            padding: 30px;
+
+            min-height: 235px;
+
+            border-radius: var(--radius);
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(255,255,255,.18);
+        }
+
+        .service-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 70px;
+
+            border-radius: 50%;
+
+            background: rgba(198,255,74,.08);
+
+            color: var(--accent);
+
+            font-size: .9rem;
+        }
+
+        .service-card h3 {
+            margin: 0 0 8px;
+
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .service-card p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: .9rem;
+        }
+
+
+        /* =========================================================
+           PROCESS
+        ========================================================= */
+
+        .process-list {
+            border-top: 1px solid var(--line);
+        }
+
+        .process-item {
+            display: grid;
+
+            grid-template-columns: 100px 1fr auto;
+
+            align-items: center;
+
+            gap: 30px;
+
+            padding: 30px 0;
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .process-number {
+            color: var(--accent);
+
+            font-size: .85rem;
+        }
+
+        .process-item h3 {
+            margin: 0;
+
+            font-size: clamp(1.5rem, 2.5vw, 2.4rem);
+
+            font-weight: 500;
+
+            line-height: 1.15;
+
+            letter-spacing: -.025em;
+        }
+
+        .process-item p {
+            max-width: 370px;
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: .9rem;
+        }
+
+
+        /* =========================================================
+           PERFORMANCE
+        ========================================================= */
+
+        .performance-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 16px;
+        }
+
+        .performance-card {
+            padding: 34px;
+
+            min-height: 260px;
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.035),
+                    rgba(255,255,255,.01)
+                );
+
+            border: 1px solid var(--line);
+        }
+
+        .performance-card span {
+            display: block;
+
+            color: var(--accent);
+
+            margin-bottom: 65px;
+
+            font-size: .8rem;
+        }
+
+        .performance-card h3 {
+            margin: 0 0 10px;
+
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+
+        .performance-card p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: .9rem;
+        }
+
+
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
+
+        .global-section {
+            padding: 130px 0;
+
+            background:
+                radial-gradient(
+                    circle at 70% 20%,
+                    rgba(198,255,74,.06),
+                    transparent 35%
+                );
+        }
+
+        .global-grid {
+            display: grid;
+
+            grid-template-columns: 1.2fr .8fr;
+
+            gap: 80px;
+
+            align-items: end;
+        }
+
+        .global-copy p {
+            max-width: 650px;
+
+            margin: 26px 0 0;
+
+            color: var(--muted-light);
+
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .global-pills {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+        }
+
+        .global-pill {
+            padding: 11px 16px;
+
+            border: 1px solid var(--line);
+
+            border-radius: 999px;
+
+            color: var(--muted-light);
+
+            font-size: .85rem;
+        }
+
+
+        /* =========================================================
+           FAQ
+        ========================================================= */
+
+        .faq-wrap {
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .accordion-item {
+            background: transparent !important;
+
+            border: 0;
+            border-bottom: 1px solid var(--line) !important;
+        }
+
+        .accordion-button {
+            padding: 25px 0;
+
+            background: transparent !important;
+
+            color: var(--text) !important;
+
+            box-shadow: none !important;
+
+            font-size: 1.05rem;
+            font-weight: 500;
+
+            letter-spacing: -.005em;
+        }
+
+        .accordion-button::after {
+            filter: invert(1);
+
+            opacity: .6;
+        }
+
+        .accordion-body {
+            padding: 0 0 25px;
+
+            color: var(--muted);
+
+            font-size: .95rem;
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact-section {
+            padding: 120px 0 150px;
+        }
+
+        .contact-grid {
+            display: grid;
+
+            grid-template-columns: .85fr 1.15fr;
+
+            gap: 80px;
+
+            align-items: start;
+        }
+
+        .contact-copy p {
+            max-width: 500px;
+
+            margin-top: 25px;
+
+            color: var(--muted);
+
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            padding: 35px;
+
+            border-radius: var(--radius);
+
+            background: var(--card);
+
+            border: 1px solid var(--line);
+        }
+
+        .form-label {
+            color: var(--muted-light);
+
+            font-size: .82rem;
+
+            margin-bottom: 8px;
+        }
+
+        .form-control,
+        .form-select {
+            min-height: 52px;
+
+            padding: 13px 15px;
+
+            background: #0d1010 !important;
+
+            color: var(--text) !important;
+
+            border: 1px solid var(--line) !important;
+
+            border-radius: 11px !important;
+
+            box-shadow: none !important;
+        }
+
+        .form-control::placeholder {
+            color: #707670;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: rgba(198,255,74,.55) !important;
+        }
+
+        textarea.form-control {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .form-select option {
+            background: #101212;
+            color: var(--text);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            padding: 30px 0;
+
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-inner {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-weight: 600;
+        }
+
+        .footer-copy {
+            color: var(--muted);
+
+            font-size: .82rem;
+        }
+
+
+        /* =========================================================
+           WHATSAPP
+        ========================================================= */
+
+        .whatsapp-float {
+            position: fixed;
+
+            right: 22px;
+            bottom: 22px;
+
+            z-index: 100;
+
+            width: 54px;
+            height: 54px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+
+            color: #090a09;
+
+            font-size: 1.25rem;
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,.3);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .whatsapp-float:hover {
+            color: #090a09;
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 16px 40px rgba(198,255,74,.18);
+        }
+
+
+        /* =========================================================
+           MOBILE STICKY CTA
+        ========================================================= */
+
+        .mobile-sticky {
+            display: none;
+        }
+
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .modal-content {
+            background: #111414;
+
+            border: 1px solid var(--line);
+
+            border-radius: 22px;
+
+            color: var(--text);
+        }
+
+        .modal-header {
+            padding: 28px 28px 10px;
+
+            border: 0;
+        }
+
+        .modal-title {
+            font-size: 1.6rem;
+            font-weight: 500;
+
+            letter-spacing: -.02em;
+        }
+
+        .modal-body {
+            padding: 15px 28px 30px;
+        }
+
+        .btn-close {
+            filter: invert(1);
+
+            opacity: .7;
+        }
+
+        .modal-subtitle {
+            color: var(--muted);
+
+            font-size: .92rem;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================================================
+           REVEAL
+        ========================================================= */
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(25px);
+
+            transition:
+                opacity .7s ease,
+                transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1100px) {
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .formula-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .global-grid {
+                grid-template-columns: 1fr;
+
+                gap: 40px;
+            }
+
+            .global-pills {
+                justify-content: flex-start;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+
+                gap: 45px;
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-video-wrap {
+                height: 60vh;
+                min-height: 430px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .performance-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-item {
+                grid-template-columns: 65px 1fr;
+            }
+
+            .process-item p {
+                grid-column: 2;
+                margin-top: -15px;
+            }
+
+        }
+
+
+        @media (max-width: 767px) {
+
+            body {
+                font-size: 15px;
+
+                line-height: 1.6;
+            }
+
+            .main-container,
+            .nav-inner {
+                width: min(100% - 30px, var(--container));
+            }
+
+            .section-space {
+                padding: 80px 0;
+            }
+
+            .hero {
+                min-height: auto;
+
+                padding-top: 76px;
+                padding-bottom: 65px;
+            }
+
+            .hero-video-wrap {
+                height: 46vh;
+                min-height: 300px;
+
+                border-radius: 18px;
+            }
+
+            .hero-copy {
+                padding-top: 35px;
+            }
+
+            .display-heading {
+                font-size: clamp(2.8rem, 13vw, 4.4rem);
+
+                line-height: 1.04;
+
+                letter-spacing: -0.035em;
+                word-spacing: 0;
+            }
+
+            .section-heading {
+                font-size: clamp(2.2rem, 10vw, 3.4rem);
+
+                line-height: 1.08;
+
+                letter-spacing: -0.03em;
+            }
+
+            .statement {
+                padding: 80px 0 90px;
+            }
+
+            .statement-text {
+                font-size: clamp(2rem, 9vw, 3.2rem);
+
+                line-height: 1.12;
+
+                letter-spacing: -0.025em;
+                word-spacing: .01em;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+
+                gap: 14px;
+            }
+
+            .portfolio-card {
+                min-height: 360px;
+            }
+
+            .portfolio-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .comparison-card {
+                padding: 27px;
+            }
+
+            .formula-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .formula-card {
+                min-height: 220px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                min-height: 210px;
+            }
+
+            .process-item {
+                grid-template-columns: 45px 1fr;
+
+                gap: 16px;
+
+                padding: 25px 0;
+            }
+
+            .process-item p {
+                grid-column: 2;
+
+                margin-top: -8px;
+            }
+
+            .global-section {
+                padding: 90px 0;
+            }
+
+            .global-copy p {
+                font-size: 1rem;
+            }
+
+            .contact-section {
+                padding: 85px 0 120px;
+            }
+
+            .contact-form {
+                padding: 23px;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .whatsapp-float {
+                right: 16px;
+                bottom: 78px;
+            }
+
+            .mobile-sticky {
+                display: block;
+
+                position: fixed;
+
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+
+                z-index: 90;
+            }
+
+            .mobile-sticky .btn-main {
+                width: 100%;
+
+                min-height: 52px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-actions .btn-main,
+            .hero-actions .btn-secondary {
+                width: 100%;
+            }
+
+            .video-placeholder-icon {
+                width: 62px;
+                height: 62px;
+            }
+
+            .portfolio-card {
+                min-height: 330px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================== -->
+
+    <nav class="site-nav">
+
+        <div class="nav-inner">
+
+            <a href="#" class="brand">
+                YourStudio
+            </a>
+
+            <div class="nav-links">
+
+                <a href="#work">Our Work</a>
+
+                <a href="#services">Services</a>
+
+                <a href="#process">How It Works</a>
+
+                <a
+                    href="#"
+                    class="nav-cta"
+                    data-bs-toggle="modal"
+                    data-bs-target="#projectModal"
+                >
+                    Start My Video Ad ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="main-container">
+
+                <div class="hero-video-wrap reveal">
+
+                    <!--
+                        Replace this placeholder with your actual video.
+
+                        Example:
+
+                        <video autoplay muted loop playsinline poster="assets/images/hero-poster.webp">
+                            <source src="assets/videos/hero.mp4" type="video/mp4">
+                        </video>
+                    -->
+
+                    <div class="video-placeholder">
+
+                        <div class="video-placeholder-content">
+
+                            <div class="video-placeholder-icon">
+                                ▶
+                            </div>
+
+                            <p>
+                                Your hero video goes here
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-copy reveal">
+
+                    <div class="eyebrow">
+                        AI-powered advertising
+                    </div>
+
+                    <h1 class="display-heading">
+                        Make your product impossible to ignore.
+                    </h1>
+
+                    <p>
+                        Scroll-stopping video ads built to make people notice
+                        your product, understand its value and take the next step.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="#"
+                            class="btn-main"
+                            data-bs-toggle="modal"
+                            data-bs-target="#projectModal"
+                        >
+                            Start My Video Ad ↗
+                        </a>
+
+                        <a
+                            href="#work"
+                            class="btn-secondary"
+                        >
+                            See Our Work
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             STATEMENT
+        ====================================================== -->
+
+        <section class="statement">
+
+            <div class="main-container reveal">
+
+                <div class="statement-label">
+                    The idea
+                </div>
+
+                <p class="statement-text">
+                    People don't buy your production process.
+                    <span>They buy what your ad makes them feel.</span>
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             INTRO
+        ====================================================== -->
+
+        <section class="section-space">
+
+            <div class="main-container">
+
+                <div class="row">
+
+                    <div class="col-lg-5 reveal">
+
+                        <div class="eyebrow">
+                            Advertising, not just video
+                        </div>
+
+                        <h2 class="section-heading">
+                            Create ads people actually want to watch.
+                        </h2>
+
+                    </div>
+
+
+                    <div class="col-lg-6 offset-lg-1 mt-4 mt-lg-0 reveal">
+
+                        <p class="body-large">
+                            We use AI-powered production to turn products,
+                            ideas and offers into advertising creatives that
+                            look premium, communicate quickly and are built
+                            for attention.
+                        </p>
+
+                        <p class="body-large mt-4">
+                            AI is the production advantage.
+                            The advertisement is what your customer sees.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PORTFOLIO
+        ====================================================== -->
+
+        <section
+            id="work"
+            class="section-space"
+        >
+
+            <div class="main-container">
+
+                <div class="section-header reveal">
+
+                    <div class="eyebrow">
+                        Selected work
+                    </div>
+
+                    <h2 class="section-heading">
+                        Products deserve better ads.
+                    </h2>
+
+                    <p>
+                        A selection of advertising concepts created to make
+                        products look desirable, memorable and worth discovering.
+                    </p>
+
+                </div>
+
+
+                <div class="portfolio-grid">
+
+                    <!-- 01 -->
+                    <article class="portfolio-card reveal">
+
+                        <div class="portfolio-visual"></div>
+
+                        <span class="portfolio-number">
+                            01
+                        </span>
+
+                        <div class="portfolio-content">
+
+                            <h3>
+                                Product commercial
+                            </h3>
+
+                            <p>
+                                Your product, the hero.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 02 -->
+                    <article class="portfolio-card reveal">
+
+                        <div class="portfolio-visual"></div>
+
+                        <span class="portfolio-number">
+                            02
+                        </span>
+
+                        <div class="portfolio-content">
+
+                            <h3>
+                                Social video ad
+                            </h3>
+
+                            <p>
+                                Made to stop the scroll.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 03 -->
+                    <article class="portfolio-card reveal">
+
+                        <div class="portfolio-visual"></div>
+
+                        <span class="portfolio-number">
+                            03
+                        </span>
+
+                        <div class="portfolio-content">
+
+                            <h3>
+                                AI / CGI concept
+                            </h3>
+
+                            <p>
+                                Show what cameras can't.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 04 -->
+                    <article class="portfolio-card reveal">
+
+                        <div class="portfolio-visual"></div>
+
+                        <span class="portfolio-number">
+                            04
+                        </span>
+
+                        <div class="portfolio-content">
+
+                            <h3>
+                                Performance creative
+                            </h3>
+
+                            <p>
+                                Turn attention into action.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 05 -->
+                    <article class="portfolio-card reveal">
+
+                        <div class="portfolio-visual"></div>
+
+                        <span class="portfolio-number">
+                            05
+                        </span>
+
+                        <div class="portfolio-content">
+
+                            <h3>
+                                Product story
+                            </h3>
+
+                            <p>
+                                Give the product a reason to be remembered.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 06 -->
+                    <article class="portfolio-card reveal">
+
+                        <div class="portfolio-visual"></div>
+
+                        <span class="portfolio-number">
+                            06
+                        </span>
+
+                        <div class="portfolio-content">
+
+                            <h3>
+                                Brand campaign
+                            </h3>
+
+                            <p>
+                                Build a visual world around your brand.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 07 -->
+                    <article class="portfolio-card reveal">
+
+                        <div class="portfolio-visual"></div>
+
+                        <span class="portfolio-number">
+                            07
+                        </span>
+
+                        <div class="portfolio-content">
+
+                            <h3>
+                                Social campaign
+                            </h3>
+
+                            <p>
+                                Creative designed for fast-moving feeds.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 08 -->
+                    <article class="portfolio-card reveal">
+
+                        <div class="portfolio-visual"></div>
+
+                        <span class="portfolio-number">
+                            08
+                        </span>
+
+                        <div class="portfolio-content">
+
+                            <h3>
+                                Impossible concept
+                            </h3>
+
+                            <p>
+                                Ideas that traditional production makes harder.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="portfolio-bottom reveal">
+
+                    <p>
+                        Seen something you like?
+                        Tell us about your product and we'll show you
+                        what we could create for it.
+                    </p>
+
+                    <a
+                        href="#"
+                        class="btn-secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#projectModal"
+                    >
+                        Create My Ad ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             TRADITIONAL VS AI
+        ====================================================== -->
+
+        <section class="section-space">
+
+            <div class="main-container">
+
+                <div class="section-header reveal">
+
+                    <div class="eyebrow">
+                        Production advantage
+                    </div>
+
+                    <h2 class="section-heading">
+                        Big ideas. Less production friction.
+                    </h2>
+
+                    <p>
+                        Traditional production can involve locations,
+                        crews, casting, equipment, complex shoots and
+                        reshoots. AI can change how certain advertising
+                        concepts are produced.
+                    </p>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+                    <div class="comparison-card reveal">
+
+                        <h3>
+                            Traditional production
+                        </h3>
+
+                        <ul class="comparison-list">
+
+                            <li>
+                                Location and logistics
+                            </li>
+
+                            <li>
+                                Crew and equipment
+                            </li>
+
+                            <li>
+                                Cast and scheduling
+                            </li>
+
+                            <li>
+                                Physical production limits
+                            </li>
+
+                            <li>
+                                Reshoots can add cost
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="comparison-card ai-card reveal">
+
+                        <h3>
+                            AI-powered production
+                        </h3>
+
+                        <ul class="comparison-list">
+
+                            <li>
+                                Concept-first creative direction
+                            </li>
+
+                            <li>
+                                Rapid visual exploration
+                            </li>
+
+                            <li>
+                                Flexible environments and worlds
+                            </li>
+
+                            <li>
+                                Fast creative iterations
+                            </li>
+
+                            <li>
+                                Built for multiple ad variations
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FORMULA
+        ====================================================== -->
+
+        <section class="section-space">
+
+            <div class="main-container">
+
+                <div class="section-header reveal">
+
+                    <div class="eyebrow">
+                        The advertising formula
+                    </div>
+
+                    <h2 class="section-heading">
+                        Attention is designed.
+                    </h2>
+
+                </div>
+
+
+                <div class="formula-grid">
+
+                    <div class="formula-card reveal">
+
+                        <div class="formula-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Hook
+                        </h3>
+
+                        <p>
+                            Give people a reason to stop.
+                        </p>
+
+                    </div>
+
+
+                    <div class="formula-card reveal">
+
+                        <div class="formula-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Story
+                        </h3>
+
+                        <p>
+                            Make them want to keep watching.
+                        </p>
+
+                    </div>
+
+
+                    <div class="formula-card reveal">
+
+                        <div class="formula-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Visual
+                        </h3>
+
+                        <p>
+                            Make the product look unforgettable.
+                        </p>
+
+                    </div>
+
+
+                    <div class="formula-card reveal">
+
+                        <div class="formula-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Message
+                        </h3>
+
+                        <p>
+                            Make the value clear, fast.
+                        </p>
+
+                    </div>
+
+
+                    <div class="formula-card reveal">
+
+                        <div class="formula-number">
+                            05
+                        </div>
+
+                        <h3>
+                            Action
+                        </h3>
+
+                        <p>
+                            Give the viewer a reason to act.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SERVICES
+        ====================================================== -->
+
+        <section
+            id="services"
+            class="section-space"
+        >
+
+            <div class="main-container">
+
+                <div class="section-header reveal">
+
+                    <div class="eyebrow">
+                        What we create
+                    </div>
+
+                    <h2 class="section-heading">
+                        Built around what you're trying to sell.
+                    </h2>
+
+                </div>
+
+
+                <div class="services-grid">
+
+                    <div class="service-card reveal">
+
+                        <div class="service-icon">
+                            01
+                        </div>
+
+                        <h3>
+                            Product ads
+                        </h3>
+
+                        <p>
+                            Make your product the centre of attention.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal">
+
+                        <div class="service-icon">
+                            02
+                        </div>
+
+                        <h3>
+                            Performance creatives
+                        </h3>
+
+                        <p>
+                            Advertising concepts built around action.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal">
+
+                        <div class="service-icon">
+                            03
+                        </div>
+
+                        <h3>
+                            Social video ads
+                        </h3>
+
+                        <p>
+                            Creative designed for fast-moving feeds.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal">
+
+                        <div class="service-icon">
+                            04
+                        </div>
+
+                        <h3>
+                            Cinematic commercials
+                        </h3>
+
+                        <p>
+                            Larger visual ideas without traditional production constraints.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal">
+
+                        <div class="service-icon">
+                            05
+                        </div>
+
+                        <h3>
+                            Product visualisation
+                        </h3>
+
+                        <p>
+                            Show your product from angles and environments
+                            that are difficult to produce physically.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card reveal">
+
+                        <div class="service-icon">
+                            06
+                        </div>
+
+                        <h3>
+                            Impossible concepts
+                        </h3>
+
+                        <p>
+                            Build visual worlds that conventional production
+                            may struggle to achieve.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PROCESS
+        ====================================================== -->
+
+        <section
+            id="process"
+            class="section-space"
+        >
+
+            <div class="main-container">
+
+                <div class="section-header reveal">
+
+                    <div class="eyebrow">
+                        How it works
+                    </div>
+
+                    <h2 class="section-heading">
+                        From product to advertising creative.
+                    </h2>
+
+                </div>
+
+
+                <div class="process-list">
+
+                    <div class="process-item reveal">
+
+                        <div class="process-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Tell us what you're selling.
+                        </h3>
+
+                        <p>
+                            Share your product, offer, audience and objective.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-item reveal">
+
+                        <div class="process-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Creative direction.
+                        </h3>
+
+                        <p>
+                            We develop the visual idea, hook and advertising direction.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-item reveal">
+
+                        <div class="process-number">
+                            03
+                        </div>
+
+                        <h3>
+                            AI-powered production.
+                        </h3>
+
+                        <p>
+                            Visuals are created and developed around the chosen concept.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-item reveal">
+
+                        <div class="process-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Human refinement.
+                        </h3>
+
+                        <p>
+                            Editing, pacing, messaging and creative details are refined.
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-item reveal">
+
+                        <div class="process-number">
+                            05
+                        </div>
+
+                        <h3>
+                            Ready for your campaign.
+                        </h3>
+
+                        <p>
+                            Your final creative is prepared for the platform and format you need.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PERFORMANCE
+        ====================================================== -->
+
+        <section class="section-space">
+
+            <div class="main-container">
+
+                <div class="section-header reveal">
+
+                    <div class="eyebrow">
+                        Creative with a purpose
+                    </div>
+
+                    <h2 class="section-heading">
+                        Don't make a video. Make an advertisement.
+                    </h2>
+
+                    <p>
+                        The goal isn't simply to produce beautiful footage.
+                        It's to create something that earns attention,
+                        communicates quickly and gives people a reason to act.
+                    </p>
+
+                </div>
+
+
+                <div class="performance-grid">
+
+                    <div class="performance-card reveal">
+
+                        <span>
+                            Hook
+                        </span>
+
+                        <h3>
+                            Stop the scroll.
+                        </h3>
+
+                        <p>
+                            The first seconds need to earn attention.
+                        </p>
+
+                    </div>
+
+
+                    <div class="performance-card reveal">
+
+                        <span>
+                            Story
+                        </span>
+
+                        <h3>
+                            Hold attention.
+                        </h3>
+
+                        <p>
+                            Give the viewer a reason to keep watching.
+                        </p>
+
+                    </div>
+
+
+                    <div class="performance-card reveal">
+
+                        <span>
+                            Action
+                        </span>
+
+                        <h3>
+                            Make the next step obvious.
+                        </h3>
+
+                        <p>
+                            Connect attention with your product and offer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             GLOBAL
+        ====================================================== -->
+
+        <section class="global-section">
+
+            <div class="main-container">
+
+                <div class="global-grid">
+
+                    <div class="global-copy reveal">
+
+                        <div class="eyebrow">
+                            Built without borders
+                        </div>
+
+                        <h2 class="section-heading">
+                            Great advertising has no borders.
+                        </h2>
+
+                        <p>
+                            Work with us remotely from wherever your business is.
+                            We collaborate with brands, agencies and product teams
+                            looking for a faster, more flexible way to create advertising.
+                        </p>
+
+                    </div>
+
+
+                    <div class="global-pills reveal">
+
+                        <span class="global-pill">
+                            Global
+                        </span>
+
+                        <span class="global-pill">
+                            Remote collaboration
+                        </span>
+
+                        <span class="global-pill">
+                            Brands
+                        </span>
+
+                        <span class="global-pill">
+                            Agencies
+                        </span>
+
+                        <span class="global-pill">
+                            Product teams
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FAQ
+        ====================================================== -->
+
+        <section class="section-space">
+
+            <div class="main-container">
+
+                <div class="section-header text-center reveal">
+
+                    <div class="eyebrow">
+                        Frequently asked
+                    </div>
+
+                    <h2 class="section-heading">
+                        Before we create something for you.
+                    </h2>
+
+                </div>
+
+
+                <div class="faq-wrap">
+
+                    <div
+                        class="accordion"
+                        id="faqAccordion"
+                    >
+
+                        <div class="accordion-item reveal">
+
+                            <h2 class="accordion-header">
+
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq1"
+                                >
+                                    Will it look like AI?
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="faq1"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#faqAccordion"
+                            >
+
+                                <div class="accordion-body">
+
+                                    The goal is not to make something look
+                                    obviously AI-generated. Creative direction,
+                                    editing, composition and refinement all matter.
+                                    The final approach depends on the concept,
+                                    product and campaign.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="accordion-item reveal">
+
+                            <h2 class="accordion-header">
+
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq2"
+                                >
+                                    Can you use my actual product?
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="faq2"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#faqAccordion"
+                            >
+
+                                <div class="accordion-body">
+
+                                    Yes. We can work from your product assets,
+                                    references and creative direction. The exact
+                                    workflow depends on the product and the visual
+                                    concept.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="accordion-item reveal">
+
+                            <h2 class="accordion-header">
+
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq3"
+                                >
+                                    Can you create Meta and Instagram ads?
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="faq3"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#faqAccordion"
+                            >
+
+                                <div class="accordion-body">
+
+                                    Yes. We can create creatives for social
+                                    advertising formats and adapt the concept
+                                    to the platform and placement requirements.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="accordion-item reveal">
+
+                            <h2 class="accordion-header">
+
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq4"
+                                >
+                                    How much does a video cost?
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="faq4"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#faqAccordion"
+                            >
+
+                                <div class="accordion-body">
+
+                                    Pricing depends on the concept, complexity,
+                                    duration, number of variations and production
+                                    requirements. Send us your product and objective
+                                    and we can recommend an appropriate direction.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="accordion-item reveal">
+
+                            <h2 class="accordion-header">
+
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq5"
+                                >
+                                    Do you work with agencies?
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="faq5"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#faqAccordion"
+                            >
+
+                                <div class="accordion-body">
+
+                                    Yes. Agencies can bring the client,
+                                    strategy and campaign direction while
+                                    we support the AI-powered production
+                                    and creative execution.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="accordion-item reveal">
+
+                            <h2 class="accordion-header">
+
+                                <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq6"
+                                >
+                                    Do you work remotely?
+                                </button>
+
+                            </h2>
+
+                            <div
+                                id="faq6"
+                                class="accordion-collapse collapse"
+                                data-bs-parent="#faqAccordion"
+                            >
+
+                                <div class="accordion-body">
+
+                                    Yes. The entire creative process can be
+                                    handled remotely.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        <section
+            id="contact"
+            class="contact-section"
+        >
+
+            <div class="main-container">
+
+                <div class="contact-grid">
+
+                    <div class="contact-copy reveal">
+
+                        <div class="eyebrow">
+                            Start a project
+                        </div>
+
+                        <h2 class="section-heading">
+                            Your product could look very different on screen.
+                        </h2>
+
+                        <p>
+                            Tell us what you're selling, where you want to
+                            advertise it and what you're trying to achieve.
+                            We'll take it from there.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-form reveal">
+
+                        <form id="contactForm">
+
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+                                        Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Your name"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+                                        Company
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Company name"
+                                    >
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+                                        Work email
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        placeholder="you@company.com"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+                                        WhatsApp / Phone
+                                    </label>
+
+                                    <input
+                                        type="tel"
+                                        class="form-control"
+                                        placeholder="+00 00000 00000"
+                                    >
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+                                        What are you advertising?
+                                    </label>
+
+                                    <select class="form-select">
+
+                                        <option selected>
+                                            Select one
+                                        </option>
+
+                                        <option>
+                                            Product
+                                        </option>
+
+                                        <option>
+                                            Service
+                                        </option>
+
+                                        <option>
+                                            App
+                                        </option>
+
+                                        <option>
+                                            Brand
+                                        </option>
+
+                                        <option>
+                                            Other
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+                                        What type of video?
+                                    </label>
+
+                                    <select class="form-select">
+
+                                        <option selected>
+                                            Select one
+                                        </option>
+
+                                        <option>
+                                            Product Ad
+                                        </option>
+
+                                        <option>
+                                            Social Ad
+                                        </option>
+
+                                        <option>
+                                            Commercial
+                                        </option>
+
+                                        <option>
+                                            Brand Film
+                                        </option>
+
+                                        <option>
+                                            CGI / AI Concept
+                                        </option>
+
+                                        <option>
+                                            Not Sure
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+                                        Where will it run?
+                                    </label>
+
+                                    <select class="form-select">
+
+                                        <option selected>
+                                            Select one
+                                        </option>
+
+                                        <option>
+                                            Meta / Instagram
+                                        </option>
+
+                                        <option>
+                                            YouTube
+                                        </option>
+
+                                        <option>
+                                            Website
+                                        </option>
+
+                                        <option>
+                                            TV / OTT
+                                        </option>
+
+                                        <option>
+                                            Multiple
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <label class="form-label">
+                                        Approximate budget
+                                    </label>
+
+                                    <select class="form-select">
+
+                                        <option selected>
+                                            Not sure
+                                        </option>
+
+                                        <option>
+                                            Under ₹25K
+                                        </option>
+
+                                        <option>
+                                            ₹25K – ₹50K
+                                        </option>
+
+                                        <option>
+                                            ₹50K – ₹1L
+                                        </option>
+
+                                        <option>
+                                            ₹1L+
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="col-12">
+
+                                    <label class="form-label">
+                                        Tell us about your product or goal
+                                    </label>
+
+                                    <textarea
+                                        class="form-control"
+                                        placeholder="What are you selling and what do you want the video to achieve?"
+                                    ></textarea>
+
+                                </div>
+
+
+                                <div class="col-12 pt-2">
+
+                                    <button
+                                        type="submit"
+                                        class="btn-main border-0"
+                                    >
+                                        Start My Video Ad ↗
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <div class="main-container">
+
+            <div class="footer-inner">
+
+                <div class="footer-brand">
+                    YourStudio
+                </div>
+
+                <div class="footer-copy">
+                    AI-powered advertising production.
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         WHATSAPP
+    ========================================================== -->
+
+    <!--
+        IMPORTANT:
+        Replace the placeholder number below with your real WhatsApp number.
+    -->
+
+    <a
+        href="https://wa.me/919999999999"
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener"
+        aria-label="Chat on WhatsApp"
+    >
+        ☎
+    </a>
+
+
+
+    <!-- =========================================================
+         MOBILE CTA
+    ========================================================== -->
+
+    <div class="mobile-sticky">
+
+        <a
+            href="#"
+            class="btn-main"
+            data-bs-toggle="modal"
+            data-bs-target="#projectModal"
+        >
+            Start My Video Ad ↗
+        </a>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         PROJECT MODAL
+    ========================================================== -->
+
+    <div
+        class="modal fade"
+        id="projectModal"
+        tabindex="-1"
+        aria-hidden="true"
+    >
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <h2 class="modal-title">
+                            Tell us where to reach you.
+                        </h2>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="modal-subtitle">
+                        Start with your email and contact details.
+                        We'll take it from there.
+                    </p>
+
+
+                    <form id="modalForm">
+
+                        <div class="row g-3">
+
+                            <!-- EMAIL FIRST -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Work email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    placeholder="you@company.com"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- CONTACT SECOND -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Contact / WhatsApp
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    placeholder="+00 00000 00000"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Your name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Company
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Company name"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    What are you advertising?
+                                </label>
+
+                                <select class="form-select">
+
+                                    <option selected>
+                                        Select one
+                                    </option>
+
+                                    <option>
+                                        Product
+                                    </option>
+
+                                    <option>
+                                        Service
+                                    </option>
+
+                                    <option>
+                                        App
+                                    </option>
+
+                                    <option>
+                                        Brand
+                                    </option>
+
+                                    <option>
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Approximate budget
+                                </label>
+
+                                <select class="form-select">
+
+                                    <option selected>
+                                        Not sure
+                                    </option>
+
+                                    <option>
+                                        Under ₹25K
+                                    </option>
+
+                                    <option>
+                                        ₹25K – ₹50K
+                                    </option>
+
+                                    <option>
+                                        ₹50K – ₹1L
+                                    </option>
+
+                                    <option>
+                                        ₹1L+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Tell us about your product
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    placeholder="What are you selling and what are you trying to achieve?"
+                                ></textarea>
+
+                            </div>
+
+
+                            <div class="col-12 pt-2">
+
+                                <button
+                                    type="submit"
+                                    class="btn-main border-0"
+                                >
+                                    Start My Video Ad ↗
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         BOOTSTRAP JS
+    ========================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+
+    <!-- =========================================================
+         CUSTOM JS
+    ========================================================== -->
+
+    <script>
+
+        /* =====================================================
+           SCROLL REVEAL
+        ====================================================== */
+
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach((entry) => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        revealObserver.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.08
+            }
+        );
+
+
+        revealElements.forEach((element) => {
+
+            revealObserver.observe(element);
+
+        });
+
+
+
+        /* =====================================================
+           DEMO CONTACT FORM
+        ====================================================== */
+
+        const contactForm = document.getElementById("contactForm");
+
+        if (contactForm) {
+
+            contactForm.addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                alert(
+                    "Thank you. Your project details have been received."
+                );
+
+                contactForm.reset();
+
+            });
+
+        }
+
+
+
+        /* =====================================================
+           DEMO MODAL FORM
+        ====================================================== */
+
+        const modalForm = document.getElementById("modalForm");
+
+        if (modalForm) {
+
+            modalForm.addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                alert(
+                    "Thanks. We'll get in touch with you shortly."
+                );
+
+                modalForm.reset();
+
+                const modalElement =
+                    document.getElementById("projectModal");
+
+                const modalInstance =
+                    bootstrap.Modal.getInstance(modalElement);
+
+                if (modalInstance) {
+
+                    modalInstance.hide();
+
+                }
+
+            });
+
+        }
+
+
+
+        /* =====================================================
+           SMOOTH ANCHOR LINKS
+        ====================================================== */
+
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+
+            link.addEventListener("click", function(event) {
+
+                const targetId =
+                    this.getAttribute("href");
+
+                if (
+                    targetId &&
+                    targetId !== "#" &&
+                    document.querySelector(targetId)
+                ) {
+
+                    event.preventDefault();
+
+                    document
+                        .querySelector(targetId)
+                        .scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
