@@ -1,0 +1,8 @@
+{
+  "name": "Visual Foundry",
+  "description": "AI-powered video advertising designed to capture attention, communicate value and turn creative into action.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
