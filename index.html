@@ -4150,29 +4150,10 @@
                     }
 
                     if (successful) {
-                        // Success: reset form and show success message
+                        // Success: reset form and redirect visitor to dedicated Thank You page
                         formElement.reset();
-                        statusBox.style.display = "block";
-                        statusBox.style.color = "var(--accent)";
-                        statusBox.style.fontSize = "0.88rem";
-                        statusBox.style.lineHeight = "1.5";
-                        statusBox.style.padding = "10px 14px";
-                        statusBox.style.borderRadius = "8px";
-                        statusBox.style.background = "rgba(198, 255, 74, 0.1)";
-                        statusBox.style.border = "1px solid rgba(198, 255, 74, 0.3)";
-                        statusBox.innerHTML = "Thank you! Your enquiry has been sent successfully. We will be in touch shortly.";
-
-                        if (isModal) {
-                            setTimeout(function() {
-                                const modalElement = document.getElementById("projectModal");
-                                if (modalElement && typeof bootstrap !== "undefined" && bootstrap.Modal) {
-                                    const modalInstance = bootstrap.Modal.getInstance(modalElement);
-                                    if (modalInstance) {
-                                        modalInstance.hide();
-                                    }
-                                }
-                            }, 2500);
-                        }
+                        window.location.href = "/thank-you";
+                        return;
                     } else {
                         throw new Error("Submission did not succeed");
                     }

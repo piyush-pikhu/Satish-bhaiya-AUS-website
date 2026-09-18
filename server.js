@@ -9,6 +9,11 @@ const app = express();
 const PORT = 3000;
 const HOST = '0.0.0.0';
 
+// Explicit route for Thank You page (before static to avoid directory 301 redirect)
+app.get(['/thank-you', '/thank-you/'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'thank-you.html'));
+});
+
 // Serve static assets with support for range requests (video streaming)
 app.use(express.static(__dirname, {
   extensions: ['html'],
