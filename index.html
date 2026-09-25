@@ -406,6 +406,43 @@
             line-height: 1.6;
         }
 
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px;
+            border-radius: 999px;
+            background: rgba(198, 255, 74, 0.08);
+            border: 1px solid rgba(198, 255, 74, 0.28);
+            color: var(--accent);
+            font-size: 0.73rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            width: fit-content;
+        }
+
+        .hero-badge::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(198, 255, 74, 0.6);
+            flex-shrink: 0;
+        }
+
+        .hero-subline {
+            max-width: 580px;
+            margin: 14px 0 0;
+            color: var(--muted);
+            font-size: clamp(0.9rem, 1.15vw, 1.02rem);
+            line-height: 1.55;
+            letter-spacing: 0.01em;
+        }
+
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
@@ -1728,6 +1765,21 @@
                 max-width: 340px;
             }
 
+            .hero-badge {
+                font-size: 0.68rem;
+                padding: 4px 12px;
+                margin-bottom: 14px;
+                letter-spacing: 0.06em;
+            }
+
+            .hero-subline {
+                margin: 10px auto 0;
+                font-size: 0.86rem;
+                line-height: 1.5;
+                max-width: 340px;
+                text-align: center;
+            }
+
             .hero-actions {
                 display: flex;
                 flex-direction: column;
@@ -2226,13 +2278,20 @@
                     <!-- Column 2 (RIGHT): Copy & Actions -->
                     <div class="hero-copy reveal">
 
+                        <div class="hero-badge">
+                            AI VIDEO PRODUCTION &amp; ADVERTISING AGENCY
+                        </div>
+
                         <h1 class="display-heading">
-                            Make your product <span class="heading-highlight">impossible to ignore.</span>
+                            AI video ads built to make brands <span class="heading-highlight">impossible to ignore.</span>
                         </h1>
 
                         <p class="hero-lead">
-                            Scroll-stopping video ads built to make people notice
-                            your product, understand its value and take the next step.
+                            We're an AI video production and advertising agency creating scroll-stopping ads for brands that want more attention, stronger creative and content people actually want to watch.
+                        </p>
+
+                        <p class="hero-subline">
+                            Built for attention. Designed for shareability. Created with viral potential.
                         </p>
 
                         <div class="hero-actions">
@@ -2370,10 +2429,10 @@
                 <div class="portfolio-grid">
 
                     <!-- 01 -->
-                    <article class="portfolio-card reveal" data-yt-id="yC0h_oiuw5A">
+                    <article class="portfolio-card reveal" data-yt-id="jSx3ikGSzmA">
 
                         <div class="portfolio-visual">
-                            <img src="https://i.ytimg.com/vi/yC0h_oiuw5A/hqdefault.jpg" alt="Product Commercial" loading="lazy">
+                            <img src="https://i.ytimg.com/vi/jSx3ikGSzmA/hqdefault.jpg" alt="Product Commercial" loading="lazy">
                         </div>
 
                         <span class="portfolio-number">
