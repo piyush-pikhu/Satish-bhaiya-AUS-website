@@ -1342,6 +1342,285 @@
             color: var(--text);
         }
 
+        /* International Phone Input */
+        .intl-phone-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .intl-phone-group {
+            display: flex;
+            align-items: stretch;
+            min-height: 52px;
+            background: #0d1010;
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            transition: border-color .2s ease, box-shadow .2s ease;
+            position: relative;
+        }
+
+        .intl-phone-group:focus-within {
+            border-color: rgba(198, 255, 74, 0.55);
+            box-shadow: 0 0 0 1px rgba(198, 255, 74, 0.2);
+        }
+
+        .intl-phone-group.has-error {
+            border-color: #ff5555 !important;
+            box-shadow: 0 0 0 2px rgba(255, 85, 85, 0.25) !important;
+            animation: intlShake 0.35s ease;
+        }
+
+        .intl-phone-group.has-error .intl-country-btn,
+        .intl-country-btn.has-error {
+            border-right-color: #ff5555 !important;
+            background: rgba(255, 85, 85, 0.12) !important;
+            color: #ffb3b3 !important;
+        }
+
+        @keyframes intlShake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-4px); }
+            40%, 80% { transform: translateX(4px); }
+        }
+
+        .intl-country-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: none;
+            border-right: 1px solid var(--line);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            transition: background .2s ease, border-color .2s ease;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .intl-country-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .intl-country-btn:focus-visible {
+            outline: none;
+            background: rgba(198, 255, 74, 0.08);
+        }
+
+        .intl-flag {
+            font-size: 1.15rem;
+            line-height: 1;
+            display: inline-block;
+        }
+
+        .intl-dial-code {
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            color: #e6eae6;
+        }
+
+        .intl-arrow {
+            opacity: 0.6;
+            transition: transform .2s ease;
+            flex-shrink: 0;
+        }
+
+        .intl-country-btn[aria-expanded="true"] .intl-arrow {
+            transform: rotate(180deg);
+        }
+
+        .intl-phone-input {
+            flex: 1;
+            min-width: 0;
+            background: transparent !important;
+            border: none !important;
+            border-radius: 0 10px 10px 0 !important;
+            color: var(--text) !important;
+            padding: 13px 15px !important;
+            font-size: 0.95rem;
+            font-family: inherit;
+            min-height: 50px;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .intl-phone-input::placeholder {
+            color: #707670;
+        }
+
+        .intl-phone-input:disabled {
+            cursor: pointer;
+            color: #707670 !important;
+            background: transparent !important;
+            user-select: none;
+        }
+
+        .intl-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            width: 360px;
+            max-width: calc(100vw - 32px);
+            background: #111414;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 12px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.4);
+            z-index: 1090;
+            overflow: hidden;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            animation: intlDropdownFadeIn 0.18s ease-out forwards;
+        }
+
+        @keyframes intlDropdownFadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intl-dropdown.is-open {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .intl-dropdown.is-dropup {
+            top: auto;
+            bottom: calc(100% + 6px);
+            animation: intlDropupFadeIn 0.18s ease-out forwards;
+        }
+
+        @keyframes intlDropupFadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intl-search-box {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--line);
+            background: #0d1010;
+            position: relative;
+        }
+
+        .intl-search-input {
+            width: 100%;
+            background: #151818;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 8px;
+            padding: 9px 12px 9px 34px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.88rem;
+            outline: none;
+            transition: border-color .2s ease;
+        }
+
+        .intl-search-input:focus {
+            border-color: rgba(198, 255, 74, 0.6);
+        }
+
+        .intl-search-icon {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--muted);
+        }
+
+        .intl-country-list {
+            max-height: 250px;
+            overflow-y: auto;
+            padding: 6px 0;
+            margin: 0;
+            list-style: none;
+            overscroll-behavior: contain;
+        }
+
+        .intl-country-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        .intl-country-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .intl-country-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px 14px;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.88rem;
+            text-align: left;
+            cursor: pointer;
+            transition: background .15s ease, color .15s ease;
+            gap: 10px;
+        }
+
+        .intl-country-item:hover,
+        .intl-country-item.is-highlighted {
+            background: rgba(198, 255, 74, 0.08);
+            color: #fff;
+        }
+
+        .intl-country-item.is-selected {
+            background: rgba(198, 255, 74, 0.14);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .intl-item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .intl-item-flag {
+            font-size: 1.15rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .intl-item-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .intl-item-dial {
+            color: var(--muted-light);
+            font-size: 0.82rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .intl-empty-state {
+            padding: 24px 16px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .intl-field-error {
+            font-size: 0.82rem;
+            color: #ff6e6e;
+            margin-top: 6px;
+            display: none;
+            line-height: 1.4;
+        }
+
 
         /* Contact Direct Channels */
         .contact-direct-channels {
@@ -3661,13 +3940,46 @@
                                         WhatsApp / contact number
                                     </label>
 
-                                    <input
-                                        type="tel"
-                                        name="whatsapp"
-                                        class="form-control"
-                                        placeholder="+00 00000 00000"
-                                        required
-                                    >
+                                    <div class="intl-phone-wrapper" id="contactPhoneWrapper">
+                                        <div class="intl-phone-group">
+                                            <button
+                                                type="button"
+                                                class="intl-country-btn"
+                                                aria-haspopup="listbox"
+                                                aria-expanded="false"
+                                                aria-label="Select country"
+                                            >
+                                                <span class="intl-flag">🌐</span>
+                                                <span class="intl-dial-code">Select country</span>
+                                                <svg class="intl-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                            </button>
+
+                                            <input
+                                                type="tel"
+                                                class="intl-phone-input"
+                                                placeholder="Select country first"
+                                                inputmode="tel"
+                                                autocomplete="off"
+                                                aria-label="Phone number"
+                                                disabled
+                                            >
+                                        </div>
+
+                                        <input
+                                            type="hidden"
+                                            name="whatsapp"
+                                        >
+
+                                        <div class="intl-dropdown" role="listbox">
+                                            <div class="intl-search-box">
+                                                <svg class="intl-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                                <input type="text" class="intl-search-input" placeholder="Search country or dial code..." autocomplete="off">
+                                            </div>
+                                            <div class="intl-country-list"></div>
+                                        </div>
+
+                                        <div class="intl-field-error"></div>
+                                    </div>
 
                                 </div>
 
@@ -3925,13 +4237,46 @@
                                     WhatsApp / contact number
                                 </label>
 
-                                <input
-                                    type="tel"
-                                    name="whatsapp"
-                                    class="form-control"
-                                    placeholder="+00 00000 00000"
-                                    required
-                                >
+                                <div class="intl-phone-wrapper" id="modalPhoneWrapper">
+                                    <div class="intl-phone-group">
+                                        <button
+                                            type="button"
+                                            class="intl-country-btn"
+                                            aria-haspopup="listbox"
+                                            aria-expanded="false"
+                                            aria-label="Select country"
+                                        >
+                                            <span class="intl-flag">🌐</span>
+                                            <span class="intl-dial-code">Select country</span>
+                                            <svg class="intl-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                        </button>
+
+                                        <input
+                                            type="tel"
+                                            class="intl-phone-input"
+                                            placeholder="Select country first"
+                                            inputmode="tel"
+                                            autocomplete="off"
+                                            aria-label="Phone number"
+                                            disabled
+                                        >
+                                    </div>
+
+                                    <input
+                                        type="hidden"
+                                        name="whatsapp"
+                                    >
+
+                                    <div class="intl-dropdown" role="listbox">
+                                        <div class="intl-search-box">
+                                            <svg class="intl-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                            <input type="text" class="intl-search-input" placeholder="Search country or dial code..." autocomplete="off">
+                                        </div>
+                                        <div class="intl-country-list"></div>
+                                    </div>
+
+                                    <div class="intl-field-error"></div>
+                                </div>
 
                             </div>
 
@@ -4166,6 +4511,453 @@
 
 
         /* =====================================================
+           INTERNATIONAL PHONE NUMBER SELECTOR & VALIDATION
+        ====================================================== */
+
+        const WORLD_COUNTRIES = [
+            { name: "Afghanistan", code: "AF", dial: "+93", flag: "🇦🇫", placeholder: "70 123 4567" },
+            { name: "Albania", code: "AL", dial: "+355", flag: "🇦🇱", placeholder: "67 212 3456" },
+            { name: "Algeria", code: "DZ", dial: "+213", flag: "🇩🇿", placeholder: "551 23 45 67" },
+            { name: "Andorra", code: "AD", dial: "+376", flag: "🇦🇩", placeholder: "312 345" },
+            { name: "Angola", code: "AO", dial: "+244", flag: "🇦🇴", placeholder: "923 123 456" },
+            { name: "Antigua and Barbuda", code: "AG", dial: "+1268", flag: "🇦🇬", placeholder: "464 1234" },
+            { name: "Argentina", code: "AR", dial: "+54", flag: "🇦🇷", placeholder: "9 11 1234-5678" },
+            { name: "Armenia", code: "AM", dial: "+374", flag: "🇦🇲", placeholder: "77 123456" },
+            { name: "Aruba", code: "AW", dial: "+297", flag: "🇦🇼", placeholder: "560 1234" },
+            { name: "Australia", code: "AU", dial: "+61", flag: "🇦🇺", placeholder: "4XX XXX XXX" },
+            { name: "Austria", code: "AT", dial: "+43", flag: "🇦🇹", placeholder: "664 1234567" },
+            { name: "Azerbaijan", code: "AZ", dial: "+994", flag: "🇦🇿", placeholder: "40 123 45 67" },
+            { name: "Bahamas", code: "BS", dial: "+1242", flag: "🇧🇸", placeholder: "359 1234" },
+            { name: "Bahrain", code: "BH", dial: "+973", flag: "🇧🇭", placeholder: "3600 1234" },
+            { name: "Bangladesh", code: "BD", dial: "+880", flag: "🇧🇩", placeholder: "1712-345678" },
+            { name: "Barbados", code: "BB", dial: "+1246", flag: "🇧🇧", placeholder: "256 1234" },
+            { name: "Belarus", code: "BY", dial: "+375", flag: "🇧🇾", placeholder: "29 123 45 67" },
+            { name: "Belgium", code: "BE", dial: "+32", flag: "🇧🇪", placeholder: "470 12 34 56" },
+            { name: "Belize", code: "BZ", dial: "+501", flag: "🇧🇿", placeholder: "622 1234" },
+            { name: "Benin", code: "BJ", dial: "+229", flag: "🇧🇯", placeholder: "90 12 34 56" },
+            { name: "Bermuda", code: "BM", dial: "+1441", flag: "🇧🇲", placeholder: "505 1234" },
+            { name: "Bhutan", code: "BT", dial: "+975", flag: "🇧🇹", placeholder: "17 12 34 56" },
+            { name: "Bolivia", code: "BO", dial: "+591", flag: "🇧🇴", placeholder: "71234567" },
+            { name: "Bosnia and Herzegovina", code: "BA", dial: "+387", flag: "🇧🇦", placeholder: "61 123 456" },
+            { name: "Botswana", code: "BW", dial: "+267", flag: "🇧🇼", placeholder: "71 234 567" },
+            { name: "Brazil", code: "BR", dial: "+55", flag: "🇧🇷", placeholder: "11 91234-5678" },
+            { name: "Brunei", code: "BN", dial: "+673", flag: "🇧🇳", placeholder: "712 3456" },
+            { name: "Bulgaria", code: "BG", dial: "+359", flag: "🇧🇬", placeholder: "87 123 4567" },
+            { name: "Burkina Faso", code: "BF", dial: "+226", flag: "🇧🇫", placeholder: "70 12 34 56" },
+            { name: "Burundi", code: "BI", dial: "+257", flag: "🇧🇮", placeholder: "79 12 34 56" },
+            { name: "Cambodia", code: "KH", dial: "+855", flag: "🇰🇭", placeholder: "12 345 678" },
+            { name: "Cameroon", code: "CM", dial: "+237", flag: "🇨🇲", placeholder: "6 71 23 45 67" },
+            { name: "Canada", code: "CA", dial: "+1", flag: "🇨🇦", placeholder: "(555) 000-0000" },
+            { name: "Cape Verde", code: "CV", dial: "+238", flag: "🇨🇻", placeholder: "991 12 34" },
+            { name: "Cayman Islands", code: "KY", dial: "+1345", flag: "🇰🇾", placeholder: "925 1234" },
+            { name: "Chile", code: "CL", dial: "+56", flag: "🇨🇱", placeholder: "9 1234 5678" },
+            { name: "Colombia", code: "CO", dial: "+57", flag: "🇨🇴", placeholder: "300 1234567" },
+            { name: "Costa Rica", code: "CR", dial: "+506", flag: "🇨🇷", placeholder: "8312 3456" },
+            { name: "Croatia", code: "HR", dial: "+385", flag: "🇭🇷", placeholder: "91 234 5678" },
+            { name: "Cyprus", code: "CY", dial: "+357", flag: "🇨🇾", placeholder: "96 123456" },
+            { name: "Czech Republic", code: "CZ", dial: "+420", flag: "🇨🇿", placeholder: "601 123 456" },
+            { name: "Denmark", code: "DK", dial: "+45", flag: "🇩🇰", placeholder: "20 12 34 56" },
+            { name: "Dominican Republic", code: "DO", dial: "+1809", flag: "🇩🇴", placeholder: "234 5678" },
+            { name: "Ecuador", code: "EC", dial: "+593", flag: "🇪🇨", placeholder: "99 123 4567" },
+            { name: "Egypt", code: "EG", dial: "+20", flag: "🇪🇬", placeholder: "100 123 4567" },
+            { name: "El Salvador", code: "SV", dial: "+503", flag: "🇸🇻", placeholder: "7012 3456" },
+            { name: "Estonia", code: "EE", dial: "+372", flag: "🇪🇪", placeholder: "5123 4567" },
+            { name: "Ethiopia", code: "ET", dial: "+251", flag: "🇪🇹", placeholder: "91 123 4567" },
+            { name: "Fiji", code: "FJ", dial: "+679", flag: "🇫🇯", placeholder: "701 2345" },
+            { name: "Finland", code: "FI", dial: "+358", flag: "🇫🇮", placeholder: "41 2345678" },
+            { name: "France", code: "FR", dial: "+33", flag: "🇫🇷", placeholder: "6 12 34 56 78" },
+            { name: "Georgia", code: "GE", dial: "+995", flag: "🇬🇪", placeholder: "555 12 34 56" },
+            { name: "Germany", code: "DE", dial: "+49", flag: "🇩🇪", placeholder: "151 12345678" },
+            { name: "Ghana", code: "GH", dial: "+233", flag: "🇬🇭", placeholder: "24 123 4567" },
+            { name: "Greece", code: "GR", dial: "+30", flag: "🇬🇷", placeholder: "691 234 5678" },
+            { name: "Guatemala", code: "GT", dial: "+502", flag: "🇬🇹", placeholder: "5123 4567" },
+            { name: "Guyana", code: "GY", dial: "+592", flag: "🇬🇾", placeholder: "624 1234" },
+            { name: "Haiti", code: "HT", dial: "+509", flag: "🇭🇹", placeholder: "34 12 3456" },
+            { name: "Honduras", code: "HN", dial: "+504", flag: "🇭🇳", placeholder: "9123 4567" },
+            { name: "Hong Kong", code: "HK", dial: "+852", flag: "🇭🇰", placeholder: "5123 4567" },
+            { name: "Hungary", code: "HU", dial: "+36", flag: "🇭🇺", placeholder: "20 123 4567" },
+            { name: "Iceland", code: "IS", dial: "+354", flag: "🇮🇸", placeholder: "612 3456" },
+            { name: "India", code: "IN", dial: "+91", flag: "🇮🇳", placeholder: "87098 85039" },
+            { name: "Indonesia", code: "ID", dial: "+62", flag: "🇮🇩", placeholder: "812-3456-7890" },
+            { name: "Iraq", code: "IQ", dial: "+964", flag: "🇮🇶", placeholder: "790 123 4567" },
+            { name: "Ireland", code: "IE", dial: "+353", flag: "🇮🇪", placeholder: "87 123 4567" },
+            { name: "Israel", code: "IL", dial: "+972", flag: "🇮🇱", placeholder: "50-123-4567" },
+            { name: "Italy", code: "IT", dial: "+39", flag: "🇮🇹", placeholder: "312 345 6789" },
+            { name: "Jamaica", code: "JM", dial: "+1876", flag: "🇯🇲", placeholder: "345 6789" },
+            { name: "Japan", code: "JP", dial: "+81", flag: "🇯🇵", placeholder: "90-1234-5678" },
+            { name: "Jordan", code: "JO", dial: "+962", flag: "🇯🇴", placeholder: "7 9012 3456" },
+            { name: "Kazakhstan", code: "KZ", dial: "+7", flag: "🇰🇿", placeholder: "701 123 4567" },
+            { name: "Kenya", code: "KE", dial: "+254", flag: "🇰🇪", placeholder: "712 345678" },
+            { name: "Kuwait", code: "KW", dial: "+965", flag: "🇰🇼", placeholder: "5012 3456" },
+            { name: "Latvia", code: "LV", dial: "+371", flag: "🇱🇻", placeholder: "21 234 567" },
+            { name: "Lebanon", code: "LB", dial: "+961", flag: "🇱🇧", placeholder: "71 123 456" },
+            { name: "Lithuania", code: "LT", dial: "+370", flag: "🇱🇹", placeholder: "612 34567" },
+            { name: "Luxembourg", code: "LU", dial: "+352", flag: "🇱🇺", placeholder: "621 123 456" },
+            { name: "Macau", code: "MO", dial: "+853", flag: "🇲🇴", placeholder: "6612 3456" },
+            { name: "Malaysia", code: "MY", dial: "+60", flag: "🇲🇾", placeholder: "12-345 6789" },
+            { name: "Maldives", code: "MV", dial: "+960", flag: "🇲🇻", placeholder: "771 2345" },
+            { name: "Malta", code: "MT", dial: "+356", flag: "🇲🇹", placeholder: "9912 3456" },
+            { name: "Mauritius", code: "MU", dial: "+230", flag: "🇲🇺", placeholder: "5251 2345" },
+            { name: "Mexico", code: "MX", dial: "+52", flag: "🇲🇽", placeholder: "55 1234 5678" },
+            { name: "Moldova", code: "MD", dial: "+373", flag: "🇲🇩", placeholder: "621 12 345" },
+            { name: "Monaco", code: "MC", dial: "+377", flag: "🇲🇨", placeholder: "6 12 34 56 78" },
+            { name: "Mongolia", code: "MN", dial: "+976", flag: "🇲🇳", placeholder: "8812 3456" },
+            { name: "Montenegro", code: "ME", dial: "+382", flag: "🇲🇪", placeholder: "67 123 456" },
+            { name: "Morocco", code: "MA", dial: "+212", flag: "🇲🇦", placeholder: "650 12 34 56" },
+            { name: "Mozambique", code: "MZ", dial: "+258", flag: "🇲🇿", placeholder: "84 123 4567" },
+            { name: "Myanmar", code: "MM", dial: "+95", flag: "🇲🇲", placeholder: "9 212 3456" },
+            { name: "Namibia", code: "NA", dial: "+264", flag: "🇳🇦", placeholder: "81 123 4567" },
+            { name: "Nepal", code: "NP", dial: "+977", flag: "🇳🇵", placeholder: "984-1234567" },
+            { name: "Netherlands", code: "NL", dial: "+31", flag: "🇳🇱", placeholder: "6 12345678" },
+            { name: "New Zealand", code: "NZ", dial: "+64", flag: "🇳🇿", placeholder: "21 123 4567" },
+            { name: "Nicaragua", code: "NI", dial: "+505", flag: "🇳🇮", placeholder: "8123 4567" },
+            { name: "Nigeria", code: "NG", dial: "+234", flag: "🇳🇬", placeholder: "802 123 4567" },
+            { name: "North Macedonia", code: "MK", dial: "+389", flag: "🇲🇰", placeholder: "72 123 456" },
+            { name: "Norway", code: "NO", dial: "+47", flag: "🇳🇴", placeholder: "412 34 567" },
+            { name: "Oman", code: "OM", dial: "+968", flag: "🇴🇲", placeholder: "9123 4567" },
+            { name: "Pakistan", code: "PK", dial: "+92", flag: "🇵🇰", placeholder: "300 1234567" },
+            { name: "Panama", code: "PA", dial: "+507", flag: "🇵🇦", placeholder: "6001 2345" },
+            { name: "Paraguay", code: "PY", dial: "+595", flag: "🇵🇾", placeholder: "981 123456" },
+            { name: "Peru", code: "PE", dial: "+51", flag: "🇵🇪", placeholder: "912 345 678" },
+            { name: "Philippines", code: "PH", dial: "+63", flag: "🇵🇭", placeholder: "917 123 4567" },
+            { name: "Poland", code: "PL", dial: "+48", flag: "🇵🇱", placeholder: "512 345 678" },
+            { name: "Portugal", code: "PT", dial: "+351", flag: "🇵🇹", placeholder: "912 345 678" },
+            { name: "Qatar", code: "QA", dial: "+974", flag: "🇶🇦", placeholder: "3312 3456" },
+            { name: "Romania", code: "RO", dial: "+40", flag: "🇷🇴", placeholder: "712 345 678" },
+            { name: "Rwanda", code: "RW", dial: "+250", flag: "🇷🇼", placeholder: "788 123 456" },
+            { name: "Saudi Arabia", code: "SA", dial: "+966", flag: "🇸🇦", placeholder: "50 123 4567" },
+            { name: "Serbia", code: "RS", dial: "+381", flag: "🇷🇸", placeholder: "60 1234567" },
+            { name: "Singapore", code: "SG", dial: "+65", flag: "🇸🇬", placeholder: "8123 4567" },
+            { name: "Slovakia", code: "SK", dial: "+421", flag: "🇸🇰", placeholder: "912 345 678" },
+            { name: "Slovenia", code: "SI", dial: "+386", flag: "🇸🇮", placeholder: "41 234 567" },
+            { name: "South Africa", code: "ZA", dial: "+27", flag: "🇿🇦", placeholder: "71 123 4567" },
+            { name: "South Korea", code: "KR", dial: "+82", flag: "🇰🇷", placeholder: "10-1234-5678" },
+            { name: "Spain", code: "ES", dial: "+34", flag: "🇪🇸", placeholder: "612 34 56 78" },
+            { name: "Sri Lanka", code: "LK", dial: "+94", flag: "🇱🇰", placeholder: "71 234 5678" },
+            { name: "Sweden", code: "SE", dial: "+46", flag: "🇸🇪", placeholder: "70 123 45 67" },
+            { name: "Switzerland", code: "CH", dial: "+41", flag: "🇨🇭", placeholder: "78 123 45 67" },
+            { name: "Taiwan", code: "TW", dial: "+886", flag: "🇹🇼", placeholder: "912 345 678" },
+            { name: "Tanzania", code: "TZ", dial: "+255", flag: "🇹🇿", placeholder: "712 345 678" },
+            { name: "Thailand", code: "TH", dial: "+66", flag: "🇹🇭", placeholder: "81 234 5678" },
+            { name: "Trinidad and Tobago", code: "TT", dial: "+1868", flag: "🇹🇹", placeholder: "291 1234" },
+            { name: "Tunisia", code: "TN", dial: "+216", flag: "🇹🇳", placeholder: "20 123 456" },
+            { name: "Turkey", code: "TR", dial: "+90", flag: "🇹🇷", placeholder: "501 234 56 78" },
+            { name: "Uganda", code: "UG", dial: "+256", flag: "🇺🇬", placeholder: "712 345678" },
+            { name: "Ukraine", code: "UA", dial: "+380", flag: "🇺🇦", placeholder: "50 123 4567" },
+            { name: "United Arab Emirates", code: "AE", dial: "+971", flag: "🇦🇪", placeholder: "50 123 4567" },
+            { name: "United Kingdom", code: "GB", dial: "+44", flag: "🇬🇧", placeholder: "7XXX XXXXXX" },
+            { name: "United States", code: "US", dial: "+1", flag: "🇺🇸", placeholder: "(555) 000-0000" },
+            { name: "Uruguay", code: "UY", dial: "+598", flag: "🇺🇾", placeholder: "94 123 456" },
+            { name: "Uzbekistan", code: "UZ", dial: "+998", flag: "🇺🇿", placeholder: "90 123 45 67" },
+            { name: "Venezuela", code: "VE", dial: "+58", flag: "🇻🇪", placeholder: "412 1234567" },
+            { name: "Vietnam", code: "VN", dial: "+84", flag: "🇻🇳", placeholder: "91 234 56 78" },
+            { name: "Zambia", code: "ZM", dial: "+260", flag: "🇿🇲", placeholder: "97 1234567" },
+            { name: "Zimbabwe", code: "ZW", dial: "+263", flag: "🇿🇼", placeholder: "71 234 5678" }
+        ];
+
+        function initIntlPhone(wrapper) {
+            if (!wrapper) return null;
+
+            const countryBtn = wrapper.querySelector(".intl-country-btn");
+            const flagSpan = wrapper.querySelector(".intl-flag");
+            const dialSpan = wrapper.querySelector(".intl-dial-code");
+            const phoneInput = wrapper.querySelector(".intl-phone-input");
+            const hiddenInput = wrapper.querySelector('input[name="whatsapp"]');
+            const dropdown = wrapper.querySelector(".intl-dropdown");
+            const searchInput = wrapper.querySelector(".intl-search-input");
+            const countryList = wrapper.querySelector(".intl-country-list");
+            const errorMsg = wrapper.querySelector(".intl-field-error");
+            const phoneGroup = wrapper.querySelector(".intl-phone-group");
+
+            let selectedCountry = null; // Strictly neutral initial state: visitor must select explicitly
+            let isOpen = false;
+
+            // Ensure disabled on initial load until country is selected
+            if (phoneInput) {
+                phoneInput.disabled = true;
+                phoneInput.placeholder = "Select country first";
+            }
+
+            function matchesSearch(country, query) {
+                const q = query.trim().toLowerCase().replace(/^\+/, "");
+                if (!q) return true;
+                const nameMatch = country.name.toLowerCase().includes(q);
+                const dialMatch = country.dial.replace("+", "").includes(q);
+                const codeMatch = country.code.toLowerCase().includes(q);
+                return nameMatch || dialMatch || codeMatch;
+            }
+
+            function renderList(query = "") {
+                if (!countryList) return;
+                const filtered = WORLD_COUNTRIES.filter(c => matchesSearch(c, query));
+                countryList.innerHTML = "";
+
+                if (filtered.length === 0) {
+                    const empty = document.createElement("div");
+                    empty.className = "intl-empty-state";
+                    empty.textContent = "No country found matching \"" + query + "\"";
+                    countryList.appendChild(empty);
+                    return;
+                }
+
+                filtered.forEach(country => {
+                    const item = document.createElement("button");
+                    item.type = "button";
+                    item.className = "intl-country-item" + (selectedCountry && selectedCountry.code === country.code ? " is-selected" : "");
+                    item.setAttribute("role", "option");
+                    item.setAttribute("aria-selected", selectedCountry && selectedCountry.code === country.code ? "true" : "false");
+
+                    item.innerHTML = `
+                        <span class="intl-item-left">
+                            <span class="intl-item-flag">${country.flag}</span>
+                            <span class="intl-item-name">${country.name}</span>
+                        </span>
+                        <span class="intl-item-dial">${country.dial}</span>
+                    `;
+
+                    item.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        selectCountry(country);
+                    });
+
+                    countryList.appendChild(item);
+                });
+            }
+
+            function selectCountry(country) {
+                selectedCountry = country;
+                flagSpan.textContent = country.flag;
+                dialSpan.textContent = country.dial;
+                countryBtn.setAttribute("aria-label", `${country.name} (${country.dial})`);
+                if (phoneInput) {
+                    phoneInput.disabled = false;
+                    phoneInput.placeholder = country.placeholder || "Local mobile number";
+                }
+                closeDropdown();
+                clearError();
+                updateHiddenValue();
+                if (phoneInput) {
+                    phoneInput.focus();
+                }
+            }
+
+            function openDropdown() {
+                // Close other open intl dropdowns
+                document.querySelectorAll(".intl-dropdown.is-open").forEach(dd => {
+                    if (dd !== dropdown) dd.classList.remove("is-open", "is-dropup");
+                });
+                document.querySelectorAll('.intl-country-btn[aria-expanded="true"]').forEach(btn => {
+                    if (btn !== countryBtn) btn.setAttribute("aria-expanded", "false");
+                });
+
+                // Check vertical room
+                const rect = phoneGroup.getBoundingClientRect();
+                const spaceBelow = window.innerHeight - rect.bottom;
+                if (spaceBelow < 280 && rect.top > 280) {
+                    dropdown.classList.add("is-dropup");
+                } else {
+                    dropdown.classList.remove("is-dropup");
+                }
+
+                dropdown.classList.add("is-open");
+                countryBtn.setAttribute("aria-expanded", "true");
+                isOpen = true;
+                if (searchInput) {
+                    searchInput.value = "";
+                    renderList("");
+                    setTimeout(() => searchInput.focus(), 60);
+                }
+            }
+
+            function closeDropdown() {
+                dropdown.classList.remove("is-open", "is-dropup");
+                countryBtn.setAttribute("aria-expanded", "false");
+                isOpen = false;
+            }
+
+            function toggleDropdown() {
+                if (isOpen) {
+                    closeDropdown();
+                } else {
+                    openDropdown();
+                }
+            }
+
+            function showError(message) {
+                phoneGroup.classList.add("has-error");
+                countryBtn.classList.add("has-error");
+                errorMsg.textContent = message;
+                errorMsg.style.display = "block";
+            }
+
+            function clearError() {
+                phoneGroup.classList.remove("has-error");
+                countryBtn.classList.remove("has-error");
+                errorMsg.textContent = "";
+                errorMsg.style.display = "none";
+            }
+
+            function updateHiddenValue() {
+                if (!hiddenInput) return;
+                if (!selectedCountry) {
+                    hiddenInput.value = "";
+                    return;
+                }
+                let digits = (phoneInput ? phoneInput.value : "").replace(/\D/g, "");
+                if (digits.startsWith("0")) {
+                    digits = digits.replace(/^0+/, "");
+                }
+                if (digits) {
+                    hiddenInput.value = selectedCountry.dial + digits;
+                } else {
+                    hiddenInput.value = "";
+                }
+            }
+
+            function validate() {
+                if (!selectedCountry) {
+                    return { valid: false, error: "Please select your country code to continue." };
+                }
+
+                const rawVal = phoneInput ? phoneInput.value.trim() : "";
+                if (!rawVal) {
+                    return { valid: false, error: "Please enter a valid WhatsApp number." };
+                }
+
+                let digits = rawVal.replace(/\D/g, "");
+                // Strip national trunk prefix 0
+                if (digits.startsWith("0")) {
+                    digits = digits.replace(/^0+/, "");
+                }
+
+                if (!digits) {
+                    return { valid: false, error: "Please enter a valid WhatsApp number." };
+                }
+
+                // Country specific validation
+                let isValid = false;
+                switch (selectedCountry.code) {
+                    case "IN": // India: 10 digits starting with 6, 7, 8, 9
+                        isValid = /^[6-9]\d{9}$/.test(digits);
+                        break;
+                    case "AU": // Australia: 9 digits mobile (starting with 4) or 9 digits total
+                        isValid = /^4\d{8}$/.test(digits) || /^\d{9}$/.test(digits);
+                        break;
+                    case "GB": // UK: 10 digits mobile (starting with 7) or 10 digits total
+                        isValid = /^7\d{9}$/.test(digits) || /^\d{10}$/.test(digits);
+                        break;
+                    case "US": // USA: 10 digits
+                    case "CA": // Canada: 10 digits
+                        isValid = /^[2-9]\d{9}$/.test(digits) || /^\d{10}$/.test(digits);
+                        break;
+                    case "AE": // UAE: 9 digits (mobile 5X XXX XXXX)
+                        isValid = /^5\d{8}$/.test(digits) || /^\d{9}$/.test(digits);
+                        break;
+                    case "SA": // Saudi Arabia: 9 digits (mobile 5X XXX XXXX)
+                        isValid = /^5\d{8}$/.test(digits) || /^\d{9}$/.test(digits);
+                        break;
+                    case "SG": // Singapore: 8 digits (mobile 8X or 9X)
+                        isValid = /^[89]\d{7}$/.test(digits) || /^\d{8}$/.test(digits);
+                        break;
+                    default:
+                        // ITU E.164 compliant: local 6 to 14 digits, total intl 8 to 15 digits
+                        const totalLen = (selectedCountry.dial.replace(/\D/g, "") + digits).length;
+                        isValid = digits.length >= 6 && digits.length <= 14 && totalLen >= 8 && totalLen <= 15;
+                        break;
+                }
+
+                if (!isValid) {
+                    return { valid: false, error: "Please enter a valid WhatsApp number." };
+                }
+
+                const fullNumber = selectedCountry.dial + digits;
+                if (hiddenInput) {
+                    hiddenInput.value = fullNumber;
+                }
+                return { valid: true, fullNumber: fullNumber };
+            }
+
+            function reset() {
+                selectedCountry = null;
+                flagSpan.textContent = "🌐";
+                dialSpan.textContent = "Select country";
+                countryBtn.setAttribute("aria-label", "Select country");
+                if (phoneInput) {
+                    phoneInput.value = "";
+                    phoneInput.disabled = true;
+                    phoneInput.placeholder = "Select country first";
+                }
+                if (hiddenInput) hiddenInput.value = "";
+                closeDropdown();
+                clearError();
+            }
+
+            // Listeners
+            countryBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleDropdown();
+            });
+
+            phoneGroup.addEventListener("click", (e) => {
+                if (!selectedCountry) {
+                    e.preventDefault();
+                    openDropdown();
+                }
+            });
+
+            if (phoneInput) {
+                phoneInput.addEventListener("input", () => {
+                    clearError();
+                    updateHiddenValue();
+                });
+
+                phoneInput.addEventListener("focus", () => {
+                    if (!selectedCountry) {
+                        openDropdown();
+                    }
+                });
+            }
+
+            searchInput.addEventListener("input", (e) => {
+                renderList(e.target.value);
+            });
+
+            searchInput.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!wrapper.contains(e.target)) {
+                    closeDropdown();
+                }
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && isOpen) {
+                    closeDropdown();
+                }
+            });
+
+            // Initial render
+            renderList("");
+
+            const api = {
+                validate,
+                showError,
+                clearError,
+                reset,
+                selectCountry,
+                getCountry: () => selectedCountry,
+                getFullNumber: () => hiddenInput ? hiddenInput.value : ""
+            };
+
+            wrapper._intlPhone = api;
+            return api;
+        }
+
+        /* =====================================================
            GOOGLE APPS SCRIPT ENQUIRY FORM SUBMISSION
         ====================================================== */
 
@@ -4173,6 +4965,10 @@
 
         function setupEnquiryForm(formElement, isModal) {
             if (!formElement) return;
+
+            // Initialize the international phone input on this form
+            const phoneWrapper = formElement.querySelector(".intl-phone-wrapper");
+            const phoneApi = phoneWrapper ? initIntlPhone(phoneWrapper) : null;
 
             formElement.addEventListener("submit", async function(event) {
                 event.preventDefault();
@@ -4188,6 +4984,23 @@
                         submitBtn.parentElement.appendChild(statusBox);
                     } else {
                         formElement.appendChild(statusBox);
+                    }
+                }
+
+                // First validate the international WhatsApp phone number
+                if (phoneApi) {
+                    const phoneValidation = phoneApi.validate();
+                    if (!phoneValidation.valid) {
+                        phoneApi.showError(phoneValidation.error);
+                        // Focus phone input or country button
+                        if (phoneValidation.error.includes("country")) {
+                            const btn = formElement.querySelector(".intl-country-btn");
+                            if (btn) btn.focus();
+                        } else {
+                            const inp = formElement.querySelector(".intl-phone-input");
+                            if (inp) inp.focus();
+                        }
+                        return;
                     }
                 }
 
@@ -4256,6 +5069,9 @@
                     if (successful) {
                         // Success: reset form and redirect visitor to dedicated Thank You page
                         formElement.reset();
+                        if (phoneApi) {
+                            phoneApi.reset();
+                        }
                         window.location.href = "/thank-you";
                         return;
                     } else {
